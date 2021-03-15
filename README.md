@@ -1,3 +1,9 @@
+# TODO
+[X] Build Songs Data
+[] Check Songs Assets
+[] Build Home Page
+[] Build Song Pages
+
 # Data Usage
 Song Directory:
 - assets/songs/&lt;song-id&gt;
