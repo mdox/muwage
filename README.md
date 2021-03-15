@@ -1,6 +1,6 @@
 # Data
 Song Directory:
-- assets/songs/<song-id>
+- assets/songs/&lt;song-id&gt;
 
 Song Files:
 - audio.mp3
