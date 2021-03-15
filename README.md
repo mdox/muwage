@@ -9,7 +9,7 @@ Song Files:
 - image.properties
 - keywords (optional)
 
-Song "*.properties"
+Song "*.properties":
 - key-value pairs
 - related to files metadata
 - for image: [Xmp.dc](https://exiftool.org/TagNames/XMP.html#dc)
