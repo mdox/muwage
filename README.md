@@ -1,8 +1,8 @@
 # TODO
-- [X] Build Songs Data
-- [ ] Check Songs Assets
-- [ ] Build Home Page
-- [ ] Build Song Pages
+- [X] Build public songs data
+- [ ] Check songs assets data
+- [ ] Build public home page
+- [ ] Build public song pages
 
 # Data Usage
 Song Directory:
