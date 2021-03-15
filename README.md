@@ -1,13 +1,13 @@
 # Data
 Song Directory:
-- ./assets/songs/song-id
+- assets/songs/<song-id>
 
 Song Files:
-- ./assets/songs/song-id/audio.mp3
-- ./assets/songs/song-id/audio.properties
-- ./assets/songs/song-id/image.jpg (or *.png)
-- ./assets/songs/song-id/image.properties
-- ./assets/songs/song-id/keywords (optional)
+- audio.mp3
+- audio.properties
+- image.jpg (or *.png)
+- image.properties
+- keywords (optional)
 
 # Dependencies
 - ffmpeg
