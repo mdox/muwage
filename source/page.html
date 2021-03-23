@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>$$page_title</title>
+    <style>
+      html {
+        font-size: 1rem;
+        font-family: sans-serif;
+      }
+
+      body {
+        margin: 1rem;
+      }
+
+      .container {
+        margin: 0 auto;
+        max-width: 384px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .container > *:not(:first-child) {
+        margin-top: 1rem;
+      }
+
+      .image {
+        width: 384px;
+        height: 360px;
+        position: relative;
+        background-size: cover;
+        background-image: url($$thumbnail_url);
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .image > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+
+      audio {
+        width: 100%;
+      }
+
+      .list {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .list > *:not(:first-child) {
+        margin-top: 1rem;
+      }
+
+      .list > * {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .details {
+        display: flex;
+        flex-direction: column;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      [data-index="$$index"] > *:first-child::before {
+        content: "\25BA\0020";
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="image">
+        <img src="$$cover_url" />
+      </div>
+
+      <div class="details">
+        <span>$$title</span>
+        <small> - <span>$$artist</span> </small>
+      </div>
+
+      <audio src="$$track_url" controls preload="metadata" $$autoplay></audio>
+
+      <div class="list">$$items</div>
+    </div>
+
+    <script>
+      if ("mediaSession" in navigator) {
+        var ms = navigator.mediaSession;
+
+        ms.metadata = new MediaMetadata({
+          title: "$$title",
+          artist: "$$artist",
+          album: "",
+          artwork: [
+            {
+              src: "$$thumbnail_url",
+              sizes: "384x384",
+              type: "image/jpeg",
+            },
+          ],
+        });
+
+        var a = document.body.querySelector("audio");
+
+        ms.setActionHandler("play", function () {
+          var c = 5;
+          var l = function () {
+            var p = a.play();
+            p && --c && p.catch(l);
+          };
+          l();
+        });
+        ms.setActionHandler("pause", function () {
+          var c = 5;
+          var l = function () {
+            var p = a.pause();
+            p && --c && p.catch(l);
+          };
+          l();
+        });
+        ms.setActionHandler("seekbackward", function () {
+          a.currentTime = a.currentTime - 15;
+        });
+        ms.setActionHandler("seekforward", function () {
+          a.currentTime = a.currentTime + 15;
+        });
+
+        var next = function (dir) {
+          var index = $$index;
+          var items = Array.from(
+            document.body.querySelectorAll("a[data-index]")
+          );
+
+          var sel =
+            items[(index - 1 + dir) % items.length] || items.reverse().shift();
+
+          sel.click();
+        };
+
+        ms.setActionHandler("previoustrack", function () {
+          next(-1);
+        });
+        ms.setActionHandler("nexttrack", function () {
+          next(1);
+        });
+      }
+    </script>
+  </body>
+</html>
