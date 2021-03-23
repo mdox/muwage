@@ -50,7 +50,7 @@ build_page_song(){
     while read song; do
         index=$(($index+1))
 
-        build_page "$(cat "$tmp/songs/$song/inf/title")" ".." $index "$dst/page/$song" "autoplay"
+        build_page "$(cat "$tmp/songs/$song/inf/title")" "../../" $index "$dst/page/$song" "autoplay"
     done
 }
 
