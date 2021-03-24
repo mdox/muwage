@@ -4,7 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>$$page_title</title>
+    <title>MDOX: $$page_title</title>
+
+    <meta
+      data-n-head="1"
+      data-hid="description"
+      name="description"
+      content="$$description"
+    />
+
+    <meta data-hid="og:type" property="og:type" content="$$type" />
+
+    <meta
+      data-hid="og:title"
+      property="og:title"
+      content="MDOX: $$page_title"
+    />
+
+    <meta
+      data-hid="og:description"
+      property="og:description"
+      content="$$description"
+    />
+
+    <meta data-hid="og:url" property="og:url" content="$$path" />
+
+    <meta data-hid="og:image" property="og:image" content="$$image" />
+
     <style>
       html {
         font-size: 1rem;
@@ -27,8 +53,9 @@
       }
 
       .image {
-        width: 384px;
-        height: 360px;
+        width: 100%;
+        padding-bottom: 75%;
+        max-width: 384px;
         position: relative;
         background-size: cover;
         background-image: url($$thumbnail_url);

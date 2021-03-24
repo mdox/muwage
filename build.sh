@@ -50,12 +50,16 @@ build_page_song(){
     while read song; do
         index=$(($index+1))
 
-        build_page "$(cat "$tmp/songs/$song/inf/title")" "../../" $index "$dst/page/$song" "autoplay"
+        build_page "$(cat "$tmp/songs/$song/inf/title")" "../../" $index "$dst/page/$song" "autoplay" \
+            "Dresmor Alakazard's music creations." \
+            "music.song" \
+            "https://muwage.mdox.xyz/page/$song" \
+            "https://muwage.mdox.xyz/songs/$song/cover.jpg"
     done
 }
 
 build_page_home(){
-    build_page "Music Home" "." 1 "$dst/"
+    build_page "Music Home" "." 1 "$dst/" ""
 }
 
 build_page(){
@@ -64,6 +68,11 @@ build_page(){
     local song_index="$3"
     local page_dst="$4"
     local autoplay="$5"
+    
+    local og_description="${6:-"Dresmor Alakazard's music creations."}"
+    local og_type="${7:-"website"}"
+    local og_path="${8:-"https://muwage.mdox.xyz/"}"
+    local og_image="${9:-"https://mdox.xyz/image.png"}"
 
     ju(){
         echo "$url_prefix/$1" | sed s,//*,/,g
@@ -98,6 +107,10 @@ build_page(){
     local song="$(cat $selection)"
     
     sed \
+        -e "s,\$\$description,$og_description,g" \
+        -e "s,\$\$type,$og_type,g" \
+        -e "s,\$\$path,$og_path,g" \
+        -e "s,\$\$image,$og_image,g" \
         -e "s,\$\$artist,$(cat "$tmp/songs/$song/inf/artist"),g" \
         -e "s,\$\$index,$song_index,g" \
         -e "s,\$\$page_title,$title,g" \
