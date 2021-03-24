@@ -37,6 +37,8 @@ copy(){
 }
 
 build(){
+    export based_keywords="$(cat $assets/keywords)"
+
     build_sort_list
     build_song_data
     build_page_home
@@ -105,8 +107,12 @@ build_page(){
     mkdir -p "$page_dst"
 
     local song="$(cat $selection)"
+
+    local title_words="$(sed -e 's/\ /,\ /g' "$tmp/songs/$song/inf/title" | tr '[:upper:]' '[:lower:]')"
+    local keywords="$based_keywords, $title_words"
     
     sed \
+        -e "s#\$\$keywords#$keywords#g" \
         -e "s,\$\$description,$og_description,g" \
         -e "s,\$\$type,$og_type,g" \
         -e "s,\$\$path,$og_path,g" \
