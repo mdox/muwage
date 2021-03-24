@@ -21,4 +21,4 @@
 
 - ffmpeg
 - exiv2
-- id3v2
+- mid3v2 (python-mutagen)
