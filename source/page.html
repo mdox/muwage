@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MDOX: $$page_title</title>
 
-    <meta name="keywords" content="$$keywords">
+    <meta name="keywords" content="$$keywords" />
 
     <meta
       data-n-head="1"
@@ -37,10 +37,15 @@
       html {
         font-size: 1rem;
         font-family: sans-serif;
+        color: #f1f1f1;
       }
 
       body {
-        margin: 1rem;
+        margin-top: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        background-color: #1f1f1f;
       }
 
       .container {
@@ -50,15 +55,28 @@
         flex-direction: column;
       }
 
-      .container > *:not(:first-child) {
+      /* .container > *:not(:first-child) {
+        margin-top: 1rem;
+      } */
+
+      .head {
+        top: 0rem;
+        padding: 1rem 0;
+        position: sticky;
+        display: flex;
+        flex-direction: column;
+        background-color: #1f1f1f;
+      }
+
+      .head > *:not(:first-child) {
         margin-top: 1rem;
       }
 
       .image {
+        position: relative;
         width: 100%;
         padding-bottom: 75%;
         max-width: 384px;
-        position: relative;
         background-size: cover;
         background-image: url($$thumbnail_url);
         background-repeat: no-repeat;
@@ -72,6 +90,16 @@
         width: 100%;
         height: 100%;
         opacity: 0;
+      }
+
+      @media screen and (max-height: 480px) {
+        .image {
+          padding-bottom: 55%;
+        }
+
+        .head {
+          position: relative;
+        }
       }
 
       audio {
@@ -99,9 +127,11 @@
 
       a {
         text-decoration: none;
+        color: #4589cc;
       }
 
       a:hover {
+        color: #9c9cf0;
         text-decoration: underline;
       }
 
@@ -112,16 +142,18 @@
   </head>
   <body>
     <div class="container">
-      <div class="image">
-        <img src="$$cover_url" />
-      </div>
+      <div class="head">
+        <div class="image">
+          <img src="$$cover_url" />
+        </div>
 
-      <div class="details">
-        <span>$$title</span>
-        <small> - <span>$$artist</span> </small>
-      </div>
+        <div class="details">
+          <span>$$title</span>
+          <small> - <span>$$artist</span> ($$date)</small>
+        </div>
 
-      <audio src="$$track_url" controls preload="metadata" $$autoplay></audio>
+        <audio src="$$track_url" controls preload="metadata" $$autoplay></audio>
+      </div>
 
       <div class="list">$$items</div>
     </div>

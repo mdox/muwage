@@ -123,6 +123,7 @@ build_page(){
         -e "s,\$\$thumbnail_url,$(ju "songs/$song/thumbnail_384.jpg"),g" \
         -e "s,\$\$cover_url,$(ju "songs/$song/cover.jpg"),g" \
         -e "s,\$\$title,$(cat "$tmp/songs/$song/inf/title"),g" \
+        -e "s,\$\$date,$(cat "$tmp/songs/$song/inf/date"),g" \
         -e "s,\$\$track_url,$(ju "songs/$song/track.mp3"),g" \
         -e "s,\$\$autoplay,$autoplay,g" \
         -e "s,\$\$items,$(sed -e 's/,/\\,/g' "$items" | tr '\n' ' '),g" \
