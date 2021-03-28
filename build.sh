@@ -52,10 +52,10 @@ build_page_song(){
     while read song; do
         index=$(($index+1))
 
-        build_page "$(cat "$tmp/songs/$song/inf/title")" "../../" $index "$dst/page/$song" "autoplay" \
+        build_page "$(cat "$tmp/songs/$song/inf/title")" "../" $index "$dst/$song" "autoplay" \
             "Dresmor Alakazard's music creations." \
             "music.song" \
-            "https://muwage.mdox.xyz/page/$song" \
+            "https://muwage.mdox.xyz/$song" \
             "https://muwage.mdox.xyz/songs/$song/cover.jpg"
     done
 }
@@ -98,7 +98,7 @@ build_page(){
 
         sed \
             -e "s,\$\$item_index,$index,g" \
-            -e "s,\$\$item_url,$(ju "page/$song"),g" \
+            -e "s,\$\$item_url,$(ju "$song"),g" \
             -e "s,\$\$item_title,$(cat "$tmp/songs/$song/inf/title"),g" \
             -e "s,\$\$item_time,$(cat "$tmp/songs/$song/inf/time"),g" \
             "$source/item.html" >> "$items"
